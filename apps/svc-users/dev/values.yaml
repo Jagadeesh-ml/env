@@ -1,4 +1,3 @@
-# === base defaults (needed by the chart) ===
 image:
   repository: ghcr.io/Jagadeesh-ml/svc-users
   tag: "sha-placeholder"
@@ -9,6 +8,4 @@ service:
   targetPort: 8080
 
 replicaCount: 2
-
-# give resources a unique name so they don't clash with other apps
 nameOverride: svc-users

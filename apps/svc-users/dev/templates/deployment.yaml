@@ -1,23 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ default .Chart.Name .Values.nameOverride }}
+  labels:
+    app: {{ default .Chart.Name .Values.nameOverride }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount | default 2 }}
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      app: {{ default .Chart.Name .Values.nameOverride }}
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}
+        app: {{ default .Chart.Name .Values.nameOverride }}
+        version: {{ .Values.image.tag | default "latest" | quote }}
     spec:
       containers:
         - name: app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
           ports:
-            - containerPort: {{ .Values.service.targetPort }}
+            - containerPort: {{ .Values.service.targetPort | default 8080 }}
           readinessProbe:
             httpGet:
               path: /healthz
-              port: {{ .Values.service.targetPort }}
+              port: {{ .Values.service.targetPort | default 8080 }}
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: {{ .Values.service.targetPort | default 8080 }}
