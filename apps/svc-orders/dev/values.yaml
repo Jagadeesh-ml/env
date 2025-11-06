@@ -5,7 +5,7 @@ image:
   repository: ghcr.io/jagadeesh-ml/svc-orders
   tag: "sha-7ff2375242710c5a279ce8c662b965d8bc39cded"
 
-replicaCount: 2
+replicaCount: 1
 
 service:
   port: 80
