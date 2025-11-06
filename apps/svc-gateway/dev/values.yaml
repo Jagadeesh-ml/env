@@ -3,7 +3,7 @@ nameOverride: svc-gateway
 
 image:
   repository: ghcr.io/jagadeesh-ml/svc-gateway
-  tag: "sha-2020172768406d7db58564ef0bf60a30e2915d38"
+  tag: "sha-2020172768406d7db58564ef0bf60a30e2915d38"   # keep your current tag
 
 replicaCount: 2
 
