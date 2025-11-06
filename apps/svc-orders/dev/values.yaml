@@ -1,3 +1,5 @@
+fullnameOverride: svc-orders
+
 image:
   repository: ghcr.io/jagadeesh-ml/svc-orders
   tag: "sha-03ce01b8550e8644bc61d11ebf5edd9d0fd63998"
@@ -8,7 +10,6 @@ service:
   port: 80
   targetPort: 8080
 
-# If your cluster is mixed arch and image is multi-arch, you can omit this.
-# If you ever need to force amd64 only, uncomment:
+# Uncomment only if you want to force amd64 nodes temporarily
 # nodeSelector:
 #   kubernetes.io/arch: amd64
